@@ -7,8 +7,8 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   return (
-    <div className="flex justify-between items-center px-20 py-4 shadow-[0_2px_10px_rgba(0,0,0,0.1)] fixed top-0 left-0 right-0 z-50 bg-white">
-      <div className="flex items-center justify-between w-full">
+    <div className="wrapper flex justify-between items-center px-20 py-4 shadow-[0_2px_10px_rgba(0,0,0,0.1)] fixed top-0 left-0 right-0 z-50 bg-white">
+      <div className="brand flex items-center justify-between w-full">
         <h1 className="text-[1.7rem] font-bold text-[#1e3a8a]">
           <span className="text-[#fe0706] ">AROHAR </span>
           TECHNOLOGIES
@@ -17,8 +17,7 @@ const Header = () => {
           <GiHamburgerMenu/>
         </div>
       </div>
-
-      <div className={`md:flex justify-between list-none gap-4 max-md:absolute max-md:bg-white left-0 right-0 top-16 transition-all max-md:text-center ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className={`md:flex justify-between list-none gap-4 max-md:absolute max-md:bg-white left-0 right-0 top-16 transition-all max-md:text-center ${isOpen ? 'max-md:translate-x-0' : 'max-md:-translate-x-full'}`}>
         <Link to="/">
           <li className={location.pathname === "/" ? "text-[#fe0706] font-bold" : "hover:text-[#fe0706]"}>
             HOME
@@ -45,6 +44,7 @@ const Header = () => {
           </li>
         </Link>
       </div>
+
     </div>
   )
 }

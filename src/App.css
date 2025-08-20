@@ -183,12 +183,37 @@ img{
     -webkit-text-fill-color: transparent;
 }
 
-.check-icon{
-    background: rgba(16, 185, 129, 0.1);
-    color: #10b981;
-    border-radius: 50%;
-    
+
+.feature-item:hover {
+    transform: translateX(8px);
+    color: #1e293b;
+    transition: all .1s ease;
 }
+.feature-item:hover .feature-icon.check {
+    background: #10b981;
+    color: white;
+    transform: rotate(360deg);
+}
+.crown-container {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+    position: relative;
+    animation: crownBounce 3s ease-in-out infinite;
+}
+.crown{
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+}
+@keyframes crownBounce {
+    0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    }
+    50% {
+    transform: translateY(-5px) rotate(5deg);
+    }
+}
+
 .btn-primary {
     width: 100%;
     padding: 16px 28px;
@@ -200,4 +225,69 @@ img{
     cursor: pointer;
     letter-spacing: 1px;
     background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+}
+
+form {
+    & .floating-label{
+        position: relative;
+        margin-bottom: 1rem;
+    }
+    & .floating-label input, .floating-label textarea {
+    width: 100%;
+    padding: 1.2rem 19.2px 1rem 0.5rem;
+    border: 2px solid rgba(30, 58, 138, 0.1);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    backdrop-filter: blur(10px);
+    }
+    & .floating-label label {
+    position: absolute;
+    top: 0.8rem;
+    left: 1rem;
+    color: var(--gray);
+    font-size: 0.9rem;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    transform-origin: left top;
+    }
+    & .floating-label input:focus, .floating-label textarea:focus, .floating-label input:not(:placeholder-shown), .floating-label textarea:not(:placeholder-shown) {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1), 0 8px 25px rgba(30, 58, 138, 0.1);
+    transform: translateY(-1px);
+    }
+    & .floating-label input:focus + label, .floating-label textarea:focus + label, .floating-label input:not(:placeholder-shown) + label, .floating-label textarea:not(:placeholder-shown) + label {
+    transform: translateY(-0.4rem) scale(0.8);
+    color: var(--secondary);
+    font-weight: 600;
+    }
+
+    & .submit-btn {
+    position: relative;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--dark) 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    overflow: hidden;
+    min-width: 180px;
+    }
+}
+
+.gallery-card:not(:hover) .image-overlay {
+    transform: translateY(0); 
+}
+.gallery-card:hover img{
+    transform: scale(1.1);
+    transition: all .8s ease ;
+}
+.image-overlay{
+    transform: translateY(100%); 
+    transition: all .8s ease;
+    background: linear-gradient(transparent, rgba(30, 58, 138, 0.9));
 }
