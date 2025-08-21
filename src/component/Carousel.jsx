@@ -28,7 +28,7 @@ const carouselCards= [
 ]
 const Carousel = () => {
   return (
-    <div className="h-96 overflow-hidden">
+    <div className="h-96 overflow-hidden mt-28">
       <Swiper
         direction="vertical"
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}

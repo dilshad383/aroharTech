@@ -1,4 +1,3 @@
-import React, { useRef, useEffect, useState } from 'react'
 import '../App.css'
 import img2 from '../assets/mock2.png'
 import mobile from '../assets/mobile1.png';
@@ -10,27 +9,10 @@ import Carousel from '../component/carousel';
 
 import { BsArrowRightShort } from "react-icons/bs";
 import Heading from '../component/Heading';
-import FeaturesCard from '../component/FeaturesCard';
-import { cardData, cardData2, cardData3, cardData4 } from '../assets/data';
+import Features from '../component/Features';
+
 import Footer from '../component/Footer';
 
-
-const tabs = [
-  'Sales & Billing',
-  'Accounting & GST',
-  'Inventory',
-  'Manufacturing',
-  'Quality Control',
-  'HRMS'
-];
-const sectionIds = [
-  'sales-billing',
-  'accounting-gst',
-  'inventory',
-  'manufacturing',
-  'quality-control',
-  'hrms'
-];
 
 const benefitsBox = [
   {
@@ -126,51 +108,6 @@ const featuredCards = [
   }
 ]
 const Home = () => {
-  const [activeTab, setActiveTab] = useState(0);
-  const sectionRefs = useRef(sectionIds.map(() => React.createRef()));
-  const scrollableRef = useRef(null);
-
-    useEffect(() => {
-    const handleScroll = () => {
-      const scrollable = scrollableRef.current;
-      if (!scrollable) return;
-
-      const scrollTop = scrollable.scrollTop;
-      const offsets = sectionRefs.current.map(ref => {
-        const el = ref.current;
-        return el ? el.offsetTop : Infinity;
-      });
-
-      // Find the last section whose offsetTop is less than scrollTop + 100 (for some buffer)
-      let activeIndex = 0;
-      for (let i = 0; i < offsets.length; i++) {
-        if (scrollTop + 100 >= offsets[i]) {
-          activeIndex = i;
-        }
-      }
-      setActiveTab(activeIndex);
-    };
-
-    const scrollable = scrollableRef.current;
-    if (scrollable) {
-      scrollable.addEventListener('scroll', handleScroll);
-      // Initial check
-      handleScroll();
-      return () => scrollable.removeEventListener('scroll', handleScroll);
-    }
-  }, []);
-
-  // Scroll to section on tab click
-  const handleTabClick = (index) => {
-    const ref = sectionRefs.current[index];
-    const scrollable = scrollableRef.current;
-    if (ref && ref.current && scrollable) {
-      scrollable.scrollTo({
-        top: ref.current.offsetTop,
-        behavior: 'smooth'
-      });
-    }
-  };
   return (
     <>
 {/* MAIN */}
@@ -218,56 +155,7 @@ const Home = () => {
           text="Whether you operate a retail store, manage a wholesale warehouse, run a manufacturing unit, or offer services — TaxSo brings everything together in one streamlined platform."
         />
 
-        <div className="grid md:grid-cols-4 gap-10">
-          <div className="sticky top-40 self-start h-screen max-md:hidden">
-            <ul className="mt-8">
-              {tabs.map((title, index) => (
-                <li key={index} className="mb-4">
-                  <button
-                    className={`shadow-[0_2px_10px_rgba(0,0,0,0.1)] px-8 py-4 font-bold w-full rounded-md text-[1.4rem] ${
-                      activeTab === index ? 'text-[#fe0706]' : 'text-[#1e3a8a]'
-                    }`}
-                    onClick={() => handleTabClick(index)}
-                  >
-                    {title}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div
-            className="col-span-3 overflow-y-auto scroll-hide mt-4"
-            ref={scrollableRef}
-            style={{ maxHeight: '100vh' }}
-          >
-            <div className="scrollable-content">
-              {sectionIds.map((id, idx) => (
-                <section
-                  key={id}
-                  ref={sectionRefs.current[idx]}
-                  id={id}
-                  style={{ scrollMarginTop: '40px' }}
-                >
-                  <h3 className="text-center text-3xl text-[#2c3e50] font-bold my-4">{tabs[idx]}</h3>
-                  <div className="grid md:grid-cols-3 gap-4">
-                    {(idx === 0 ? cardData :
-                      idx === 1 ? cardData2 :
-                      idx === 2 ? cardData3 :
-                      cardData4
-                    ).map((card) => (
-                      <FeaturesCard
-                        key={card.id}
-                        icon={card.icon}
-                        title={card.title}
-                        desc={card.desc}
-                      />
-                    ))}
-                  </div>
-                </section>
-              ))}
-            </div>
-          </div>
-        </div>
+        <Features/>
       </div>
 
 {/* Benefits */}
@@ -359,6 +247,17 @@ const Home = () => {
             <p className="ml-4 bg-[linear-gradient(135deg,#212529_0%,#fe0706_100%)] bg-clip-text text-transparent text-lg bullet-point relative">
               We're not just a software company — we're your <span className="font-bold">growth partner</span>.
             </p>
+          </div>
+
+          <div className="relative">
+            <div className="floating_card rounded-2xl bg-white shadow-[0_20px_60px_rgba(0,0,0,0.1),_0_0_0_1px_rgba(255,255,255,0.2)] text-[#212529]">
+              <h3 className="text-2xl font-bold">Mission</h3>
+              <p className="text-xl">To empower businesses with smart, affordable, and intelligent ERP solutions that drive growth and operational excellence.</p>
+            </div>
+            <div className="floating_card rounded-2xl bg-white shadow-[0_20px_60px_rgba(0,0,0,0.1),_0_0_0_1px_rgba(255,255,255,0.2)] text-[#212529]">
+              <h3 className="text-2xl font-bold">Mission</h3>
+              <p className="text-xl">To empower businesses with smart, affordable, and intelligent ERP solutions that drive growth and operational excellence.</p>
+            </div>
           </div>
         </div>
       </div>

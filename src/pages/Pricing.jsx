@@ -4,297 +4,15 @@ import goldcrown from '../assets/goldcrown.svg'
 import purplecrown from '../assets/purplecrown.svg'
 import greencrown from '../assets/greencrown.svg'
 import checkicon from '../assets/check.svg'
-import crossicon from '../assets/cross.svg'
+
 import { useState } from 'react';
+import { priceCard, modalCard } from '../assets/pricing';
+import { RxCrossCircled } from "react-icons/rx";
 
-const priceCard =[
-    {
-        cardIcon: crown,
-        cardTitle: 'Silver Plan',
-        initMonthlyPrice: '₹300',
-        monthlyPrice: '₹199',
-        initYearlyPrice: '₹2,400',
-        yearlyPrice: '₹2,000',
-        platformTag: '💻 DESKTOP + MOBILE',
-        btnText: 'BUY SILVER PLAN',
-        checkList: [
-            {
-                checkIcon: checkicon,
-                name: 'Inventory'
-            },
-            {
-                checkIcon: checkicon,
-                name: 'Sales'
-            },
-            {
-                checkIcon: checkicon,
-                name: 'Customer'
-            },
-            {
-                checkIcon: crossicon,
-                name: 'Purchase'
-            },
-            {
-                checkIcon: crossicon,
-                name: 'Finance'
-            },
-            {
-                checkIcon: crossicon,
-                name: 'E-Invoice / E-way Bill'
-            },
-            {
-                checkIcon: checkicon,
-                name: 'Support (Mail)'
-            },
-        ]
-    },
-    {
-        cardIcon: goldcrown,
-        cardTitle: 'Gold Plan',
-        initMonthlyPrice: '₹600',
-        monthlyPrice: '₹499',
-        initYearlyPrice: '₹6,000',
-        yearlyPrice: '₹5,500',
-        platformTag: '💻 DESKTOP + MOBILE',
-        btnText: 'BUY GOLD PLAN',
-        checkList: [
-            {
-                checkIcon: checkicon,
-                name: 'Inventory'
-            },
-            {
-                checkIcon: checkicon,
-                name: 'Sales'
-            },
-            {
-                checkIcon: checkicon,
-                name: 'Customer'
-            },
-            {
-                checkIcon: checkicon,
-                name: 'Purchase'
-            },
-            {
-                checkIcon: crossicon,
-                name: 'Finance'
-            },
-            {
-                checkIcon: crossicon,
-                name: 'E-Invoice / E-way Bill'
-            },
-            {
-                checkIcon: checkicon,
-                name: 'Support (Mail)'
-            },
-        ]
-    },
-    {
-        cardIcon: greencrown,
-        cardTitle: 'Platinum Plan',
-        initMonthlyPrice: '₹1,500',
-        monthlyPrice: '₹999',
-        initYearlyPrice: '₹12,000',
-        yearlyPrice: '₹11,000',
-        platformTag: '💻 DESKTOP + MOBILE',
-        btnText: 'BUY PLATINUM PLAN',
-        checkList: [
-            {
-                checkIcon: checkicon,
-                name: 'Inventory'
-            },
-            {
-                checkIcon: checkicon,
-                name: 'Sales'
-            },
-            {
-                checkIcon: checkicon,
-                name: 'Customer'
-            },
-            {
-                checkIcon: checkicon,
-                name: 'Purchase'
-            },
-            {
-                checkIcon: checkicon,
-                name: 'Finance'
-            },
-            {
-                checkIcon: crossicon,
-                name: 'E-Invoice / E-way Bill'
-            },
-            {
-                checkIcon: checkicon,
-                name: 'Support (Mail)'
-            },
-        ]
-    },
-    {
-        cardIcon: purplecrown,
-        cardTitle: 'Enterprise Plan',
-        monthlyPrice: 'Custom Pricing',
-        yearlyPrice: 'Custom Pricing',
-        platformTag: 'All Platinum features Plus',
-        btnText: 'TALK TO SALES',
-        checkList: [
-            {
-                checkIcon: checkicon,
-                name: 'BOM'
-            },
-            {
-                checkIcon: checkicon,
-                name: 'Production Planning'
-            },
-            {
-                checkIcon: checkicon,
-                name: 'Work Order Management'
-            },
-            {
-                checkIcon: checkicon,
-                name: 'Quality Control'
-            },
-            {
-                checkIcon: checkicon,
-                name: 'Employee Management'
-            },
-            {
-                checkIcon: checkicon,
-                name: 'Attendance Management'
-            },
-            {
-                checkIcon: checkicon,
-                name: 'Leave Mangement'
-            },
-        ]
-    },
-]
-
-const modalCard = [
-    {
-        title: 'SALES',
-        items: [
-            {
-            cell1: 'Invoice',
-            cell2: checkicon,
-            cell3: checkicon,
-            cell4: checkicon,
-            cell5: checkicon
-            },
-            {
-            cell1: 'Cash Memo',
-            cell2: crossicon,
-            cell3: checkicon,
-            cell4: checkicon,
-            cell5: checkicon
-            },
-            {
-            cell1: 'Delivery Challan',
-            cell2: crossicon,
-            cell3: checkicon,
-            cell4: checkicon,
-            cell5: checkicon
-            },
-            {
-            cell1: 'Performa Invoice',
-            cell2: crossicon,
-            cell3: checkicon,
-            cell4: checkicon,
-            cell5: checkicon
-            },
-            {
-            cell1: 'Sales Order',
-            cell2: crossicon,
-            cell3: checkicon,
-            cell4: checkicon,
-            cell5: checkicon
-            },
-            {
-            cell1: 'Credit Note',
-            cell2: checkicon,
-            cell3: checkicon,
-            cell4: checkicon,
-            cell5: checkicon
-            },
-            {
-            cell1: 'E-Invoice',
-            cell2: crossicon,
-            cell3: crossicon,
-            cell4: checkicon,
-            cell5: checkicon
-            },
-            {
-            cell1: 'E-wayBill',
-            cell2: crossicon,
-            cell3: crossicon,
-            cell4: checkicon,
-            cell5: checkicon
-            },
-        ]
-    },
-    {
-        title: 'SALES',
-        items: [
-            {
-            cell1: 'Invoice',
-            cell2: checkicon,
-            cell3: checkicon,
-            cell4: checkicon,
-            cell5: checkicon
-            },
-            {
-            cell1: 'Cash Memo',
-            cell2: crossicon,
-            cell3: checkicon,
-            cell4: checkicon,
-            cell5: checkicon
-            },
-            {
-            cell1: 'Delivery Challan',
-            cell2: crossicon,
-            cell3: checkicon,
-            cell4: checkicon,
-            cell5: checkicon
-            },
-            {
-            cell1: 'Performa Invoice',
-            cell2: crossicon,
-            cell3: checkicon,
-            cell4: checkicon,
-            cell5: checkicon
-            },
-            {
-            cell1: 'Sales Order',
-            cell2: crossicon,
-            cell3: checkicon,
-            cell4: checkicon,
-            cell5: checkicon
-            },
-            {
-            cell1: 'Credit Note',
-            cell2: checkicon,
-            cell3: checkicon,
-            cell4: checkicon,
-            cell5: checkicon
-            },
-            {
-            cell1: 'E-Invoice',
-            cell2: crossicon,
-            cell3: crossicon,
-            cell4: checkicon,
-            cell5: checkicon
-            },
-            {
-            cell1: 'E-wayBill',
-            cell2: crossicon,
-            cell3: crossicon,
-            cell4: checkicon,
-            cell5: checkicon
-            },
-        ]
-    },
-]
 const Pricing = () => {
     const [isClicked, setClick] = useState(0);
-     const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(null);
+     
   return (
     <>
         <div className="bg-[#f5f7f8] mt-10 px-8">
@@ -304,9 +22,9 @@ const Pricing = () => {
                     <span className="text-black">So<sup>®</sup></span>
                     <span className="">ERP</span>
                 </h2>
-                <div className="rounded-3xl p-2 bg-white">
-                    <span onClick={() => setClick(0)} className={`p-2 rounded-2xl cursor-pointer ${isClicked === 0 ? 'bg-blue-500 text-white' : 'bg-transparent text-gray-700'}`}>Monthly</span>
-                    <span onClick={() => setClick(1)} className={`p-2 rounded-2xl cursor-pointer ${isClicked === 1 ? 'bg-blue-500 text-white' : 'bg-transparent text-gray-700'}`}>Yearly</span>
+                <div className="rounded-3xl p-2 bg-white ">
+                    <span onClick={() => setClick(0)} className={`p-2 rounded-2xl cursor-pointer transition-all duration-300 ease-in-out ${isClicked === 0 ? 'bg-blue-500 text-white' : 'bg-transparent text-gray-700'}`}>Monthly</span>
+                    <span onClick={() => setClick(1)} className={`p-2 rounded-2xl cursor-pointer transition-all duration-300 ease-in-out ${isClicked === 1 ? 'bg-blue-500 text-white' : 'bg-transparent text-gray-700'}`}>Yearly</span>
                 </div>
             </div>
 
@@ -346,51 +64,59 @@ const Pricing = () => {
                     </div>
                     ))}
                     <div
-                    onClick={() => setOpen(true)}
-                    className="text-[#6366f1] font-bold justify-self-start my-4" >+ More Features</div>
+                    onClick={() => setOpen(index)} // open modal for this card
+                    className="text-[#6366f1] font-bold justify-self-start my-4 cursor-pointer"
+                    >
+                    + More Features
+                    </div>
 
                     <div className="btn-primary mt-4 text-center">{card.btnText}</div>
                     {/* Modal */}
-            {open && (
-                <div className="fixed to-10 inset-0 flex items-center justify-center bg-black/50 z-50 ">
-                <div className="bg-white overflow-hidden rounded-xl shadow-lg w-11/12 ">
-                    <div className="bg-gradient-to-br from-[#1e3a8a] to-[#3b82f6] text-white px-4 py-4 flex justify-between items-center">
-                        <h2 className="text-xl font-bold "><span className='inline-block bg-white/20 rounded-md mr-3'>📋</span>All Features</h2>
-
+            {open !== null && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+                    <div className="bg-white overflow-y-auto rounded-xl shadow-lg w-11/12 max-h-[90vh]">
+                    <div className="bg-gradient-to-br from-[#1e3a8a] to-[#3b82f6] text-white px-4 py-4 flex justify-between items-center sticky top-0">
+                        <h2 className="text-xl font-bold">
+                        <span className="inline-block bg-white/20 rounded-md mr-3">📋</span>
+                        All Features
+                        </h2>
                         <button
-                        onClick={() => setOpen(false)}
-                        className=" bg-white/20 px-4 rounded-full py-2 hover:rotate-90 "
-                        >x</button>
+                        onClick={() => setOpen(null)}
+                        className=" bg-white/20 rounded-full text-xl p-[4px] hover:rotate-90 cursor-pointer"
+                        >
+                        <RxCrossCircled/>
+                        </button>
                     </div>
 
-                    <div className="grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr] gap-4 px-4 py-6">
-                        <div className="text-[#2c3e50]">
+                    <div className="grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr] gap-4 px-4 py-6 place-items-center">
+                        <div className="text-[#2c3e50] font-bold">
                             Features
                         </div>
-                        <div className="font-bold md:flex items-center">
+                        <div className="font-bold md:flex items-center gap-2">
                             <img width={40} src={crown} alt="" /> <span>Silver</span>  
                         </div>
-                        <div className="font-bold md:flex items-center">
-                            <img width={40} src={goldcrown} alt="" /> <span>Silver</span>  
+                        <div className="font-bold md:flex items-center gap-2">
+                            <img width={40} src={goldcrown} alt="" /> <span>Gold</span>  
                         </div>
-                        <div className="font-bold md:flex items-center">
-                            <img width={40} src={greencrown} alt="" /> <span>Silver</span>  
+                        <div className="font-bold md:flex items-center gap-2">
+                            <img width={40} src={greencrown} alt="" /> <span>Platinum</span>  
                         </div>
-                        <div className="font-bold md:flex items-center">
-                            <img width={40} src={purplecrown} alt="" /> <span>Silver</span>  
+                        <div className="font-bold md:flex items-center gap-2">
+                            <img width={40} src={purplecrown} alt="" /> <span>ERP</span>  
                         </div>
                     </div>
                     
-                    {modalCard.map((card, index) => (
-                        <div key={index} className="shadow-[0_2px_8px_0_rgba(99,99,99,0.2)] rounded-[10px] px-4">
-                        <div className="text-center font-bold py-4">{card.title}</div>
-                        {card.items.map((item, index)=>(
-                            <div key={index} className="grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr] gap-4">
-                            <div className="">{item.cell1}</div>
-                            <div className="rounded-full overflow-hidden"><img src={item.cell2} alt="" className='w-2/12 rounded-full' /></div>
-                            <div className="rounded-full overflow-hidden"><img src={item.cell3} alt="" className='rounded-full w-2/12'/></div>
-                            <div className="rounded-full overflow-hidden"><img src={item.cell4} alt="" className='w-2/12'/></div>
-                            <div className="rounded-full overflow-hidden"><img src={item.cell5} alt="" className='w-2/12'/></div>
+                    {modalCard.map((section, i) => (
+                        <div key={i} className="shadow-[0_2px_8px_0_rgba(99,99,99,0.2)] rounded-[10px] px-4">
+                        <div className="text-center font-bold py-4 text-[#212529]">{section.title}</div>
+                        {section.items.map((item, j)=>(
+                            <div key={j} className="grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr] gap-4 hover:bg-[#f8f9ff] pb-2 px-2">
+                                <div className='text-[#2c3e50]'>{item.cell1}</div>
+                                {[item.cell2, item.cell3, item.cell4, item.cell5].map((cell, k) => (
+                                <div key={k} className="flex justify-center">
+                                <img src={cell} alt="" className="w-6 h-6" />
+                                </div>
+                            ))}
                         </div>
                         ))}
                     </div>
