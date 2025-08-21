@@ -5,7 +5,7 @@ import receipt from '../assets/receipt.svg';
 import hearticon from '../assets/heart.svg';
 import user from '../assets/user.svg';
 import star from '../assets/star.svg';
-import Carousel from '../component/carousel';
+import Carousel from '../component/Carousel';
 
 import { BsArrowRightShort } from "react-icons/bs";
 import Heading from '../component/Heading';
